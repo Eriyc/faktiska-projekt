@@ -6,3 +6,6 @@ stacken innehåller
 - nextjs
 - chakra-ui
 - three.js
+
+alla projekt ligger i mappstrukturer, för att hitta det gå till `src/pages/[projekt]` och där finns filerna för respektive projekt.
+ibland används filer från utils eller components.
