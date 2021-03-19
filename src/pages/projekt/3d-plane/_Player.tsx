@@ -1,6 +1,5 @@
 const Player = () => {
-
-
-
-    return 
+  return <mesh></mesh>;
 };
+
+export default Player;
