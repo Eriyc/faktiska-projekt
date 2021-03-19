@@ -5,7 +5,7 @@ import {
   SliderThumb,
   SliderTrack,
 } from "@chakra-ui/slider";
-import { Canvas, useThree } from "react-three-fiber";
+import { Canvas } from "react-three-fiber";
 import { Params } from "src/utils";
 import Controls from "./_Controls";
 import Lights from "./_Lights";
@@ -32,11 +32,11 @@ const Scene = () => {
         padding="8px"
       >
         <section>
-          <p>exponent</p>
+          <p>exponent - {terrain.exponentiation}</p>
           <Slider
             aria-label="slider-ex-1"
             defaultValue={1}
-            max={4}
+            max={3}
             min={0}
             step={0.25}
             onChange={(e) => handleTerrainUpdate({ exponentiation: e })}

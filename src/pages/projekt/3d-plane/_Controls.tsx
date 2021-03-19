@@ -1,8 +1,4 @@
-import {
-  OrbitControls,
-  OrthographicCamera,
-  PerspectiveCamera,
-} from "@react-three/drei";
+import { OrbitControls, OrthographicCamera } from "@react-three/drei";
 
 const Controls = () => {
   return (

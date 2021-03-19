@@ -1,12 +1,22 @@
 import { useFrame, useUpdate } from "react-three-fiber";
-import { Mesh, DoubleSide, Color } from "three";
+import { Mesh, Color, BufferGeometry } from "three";
 
 import { noise } from "src/utils";
 import { useStore } from "./_store";
 
-function fromArrayLike(arr: ArrayLike<any>) {
-  return Array.from(arr);
-}
+type ExtendedBufferGeometry = BufferGeometry & {
+  parameters: {
+    height: number;
+    width: number;
+    heightSegments: number;
+    widthSegments: number;
+  };
+  attributes: {
+    position: {
+      array: number[];
+    };
+  };
+};
 
 const Terrain = () => {
   const store = useStore();
@@ -16,10 +26,12 @@ const Terrain = () => {
       const { exponentiation } = store.terrain;
       const simplex = noise.simplex(store.terrain);
 
-      let pos = geometry.getAttribute("position");
-      let pa = pos.array;
-      const hVerts = geometry.parameters.heightSegments + 1;
-      const wVerts = geometry.parameters.widthSegments + 1;
+      const extGeom = geometry as ExtendedBufferGeometry;
+
+      let pos = extGeom.getAttribute("position");
+      let pa = pos.array as number[];
+      const hVerts = extGeom.parameters.heightSegments + 1;
+      const wVerts = extGeom.parameters.widthSegments + 1;
       for (let j = 0; j < hVerts; j++) {
         for (let i = 0; i < wVerts; i++) {
           pa[3 * (j * wVerts + i) + 2] =
