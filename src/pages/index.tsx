@@ -1,6 +1,6 @@
 import { Stack } from "@chakra-ui/layout";
-import { SiteContainer, SiteLink } from "src/components";
-import { PageMetadata } from "src/components/global/metadata";
+import { SiteContainer, SiteLink } from "components";
+import { PageMetadata } from "components/global/metadata";
 
 const projekt = ["canvas", "3d-plane"];
 
@@ -13,7 +13,7 @@ const Index = () => (
   <SiteContainer meta={meta} hideBorder>
     <Stack>
       {projekt.map((p) => (
-        <SiteLink href={`/projekt/${p}`} key={p}>
+        <SiteLink href={`/project/${p}`} key={p}>
           {p}
         </SiteLink>
       ))}

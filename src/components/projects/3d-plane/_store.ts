@@ -1,4 +1,4 @@
-import { Params } from "src/utils";
+import { Params } from "utils";
 import create from "zustand";
 
 type Store = {

@@ -1,8 +1,8 @@
-import { SiteContainer } from "src/components";
-import { PageMetadata } from "src/components/global/metadata";
+import { SiteContainer } from "components";
+import { PageMetadata } from "components/global/metadata";
 import dynamic from "next/dynamic";
 
-const Scene = dynamic(() => import("./_Scene"), {
+const Scene = dynamic(() => import("components/projects/3d-plane/_Scene"), {
   ssr: false,
 });
 

@@ -1,7 +1,7 @@
 import { useFrame, useUpdate } from "react-three-fiber";
 import { Mesh, Color, BufferGeometry } from "three";
 
-import { noise } from "src/utils";
+import { noise } from "utils";
 import { useStore } from "./_store";
 
 type ExtendedBufferGeometry = BufferGeometry & {

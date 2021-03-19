@@ -6,7 +6,7 @@ import {
   SliderTrack,
 } from "@chakra-ui/slider";
 import { Canvas } from "react-three-fiber";
-import { Params } from "src/utils";
+import { Params } from "utils";
 import Controls from "./_Controls";
 import Lights from "./_Lights";
 import { useStore } from "./_store";
