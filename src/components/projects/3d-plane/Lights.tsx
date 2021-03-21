@@ -2,8 +2,6 @@ import React from "react";
 import { useResource } from "react-three-fiber";
 import { Color, PointLight } from "three";
 
-const Sun = () => {};
-
 const Lights = () => {
   const light1 = useResource<PointLight>();
   const light2 = useResource<PointLight>();
