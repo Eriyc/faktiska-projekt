@@ -68,7 +68,7 @@ const Terrain = () => {
       name="plane terrain"
       castShadow
     >
-      <planeBufferGeometry attach="geometry" args={[2048, 2048, 500, 500]} />
+      <planeBufferGeometry attach="geometry" args={[25, 25, 500, 500]} />
       <meshPhongMaterial
         attach="material"
         color={"green"}
