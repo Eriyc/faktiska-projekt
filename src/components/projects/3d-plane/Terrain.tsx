@@ -1,8 +1,8 @@
 import { useFrame, useUpdate } from "react-three-fiber";
-import { Mesh, Color, BufferGeometry } from "three";
+import { Mesh, BufferGeometry, DoubleSide } from "three";
 
 import { noise } from "utils";
-import { useStore } from "./_store";
+import { useStore } from "./store";
 
 type ExtendedBufferGeometry = BufferGeometry & {
   parameters: {
@@ -49,6 +49,7 @@ const Terrain = () => {
       }
 
       pos.needsUpdate = true;
+      geometry.computeVertexNormals();
     },
     [store.terrain]
   );
@@ -61,14 +62,18 @@ const Terrain = () => {
   });
 
   return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2, 0, 0]} name="plane terrain">
-      <planeBufferGeometry attach="geometry" args={[25, 25, 150, 150]} />
+    <mesh
+      ref={meshRef}
+      rotation={[-Math.PI / 2, 0, 0]}
+      name="plane terrain"
+      castShadow
+    >
+      <planeBufferGeometry attach="geometry" args={[2048, 2048, 500, 500]} />
       <meshPhongMaterial
         attach="material"
         color={"green"}
-        specular={new Color("hotpink")}
         shininess={0}
-        flatShading
+        side={DoubleSide}
       />
     </mesh>
   );

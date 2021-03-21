@@ -2,14 +2,14 @@ import { SiteContainer } from "components";
 import { PageMetadata } from "components/global/metadata";
 import dynamic from "next/dynamic";
 
-const Scene = dynamic(() => import("components/projects/3d-plane/Scene"), {
+const Scene = dynamic(() => import("components/projects/amogus/Scene"), {
   ssr: false,
 });
 
 const meta: PageMetadata = {
-  description: "simple plane in three.js",
-  tags: ["three.js", "3d", "beginner", "plane"],
-  title: "Three.js simple plane",
+  description: "no way?",
+  tags: ["three.js", "3d", "among us", "game"],
+  title: "Among us in real life??",
   hideMeta: false,
 };
 
