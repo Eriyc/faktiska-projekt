@@ -6,7 +6,6 @@ import { useMousePosition } from './hooks'
 import { antStore } from './store'
 import { antMath } from './math'
 import { wallTools } from './obstacle'
-import { Vector2 } from 'three'
 
 const AntsCanvas: FC = () => {
   const canvas = useRef<HTMLCanvasElement>(null)
