@@ -1,21 +1,20 @@
-import { Box, Container, Heading, Text } from "@chakra-ui/react";
-import { ReactChild, ReactChildren } from "react";
-import { PageMetadata, SiteMetadata } from "./metadata";
-import { SiteNavbar } from "./navbar";
+import { Box, Container, Heading, Text } from '@chakra-ui/react'
+import { FC, ReactChild, ReactChildren } from 'react'
+import { PageMetadata, SiteMetadata } from './metadata'
+import { SiteNavbar } from './navbar'
 
 export const SiteContainer = ({
   children,
   meta,
-  hideBorder,
 }: {
   children:
     | ReactChild
     | ReactChild[]
     | JSX.Element
     | JSX.Element[]
-    | ReactChildren;
-  meta: PageMetadata;
-  hideBorder?: boolean;
+    | ReactChildren
+  meta: PageMetadata
+  hideBorder?: boolean
 }) => {
   return (
     <>
@@ -36,19 +35,26 @@ export const SiteContainer = ({
             <Text>{meta.description}</Text>
           </Box>
         )}
-        <Box
-          as="main"
-          flex="1"
-          display="flex"
-          flexDir="column"
-          position="relative"
-          {...(hideBorder
-            ? {}
-            : { border: "1px solid gray", borderRadius: "4px" })}
-        >
-          {children}
-        </Box>
+        {children}
       </Container>
     </>
-  );
-};
+  )
+}
+
+export const CanvasContainer: FC<{ hideBorder?: boolean }> = ({
+  children,
+  hideBorder,
+}) => {
+  return (
+    <Box
+      as="main"
+      flex="1"
+      display="flex"
+      flexDir="column"
+      position="relative"
+      {...(hideBorder ? {} : { border: '1px solid gray', borderRadius: '4px' })}
+    >
+      {children}
+    </Box>
+  )
+}

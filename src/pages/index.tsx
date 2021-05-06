@@ -1,8 +1,8 @@
-import { Stack } from "@chakra-ui/layout";
+import { Stack } from "@chakra-ui/react";
 import { SiteContainer, SiteLink } from "components";
 import { PageMetadata } from "components/global/metadata";
 
-const projekt = ["canvas", "3d-plane", /* "amogus", "planets" */];
+const projekt = ["ants"];
 
 const meta: PageMetadata = {
   title: "Ordentliga icke-meme projekt",
