@@ -38,4 +38,8 @@ export const math = {
   dot: (a: Vec2, b: Vec2) => {
     return a.x * b.x + a.y * b.y
   },
+  normalize: (x: number, min: number, max: number) => {
+    const normalized = (x - min) / (max - min)
+    return normalized
+  },
 }

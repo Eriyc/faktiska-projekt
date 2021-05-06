@@ -1,5 +1,5 @@
 import { Vec2, Vector2 } from 'three'
-import { Ant } from './types'
+import Ant from './ant'
 
 export const antMath = {
   pointInAnt: (ant: Ant, point: Vec2) => {
@@ -32,17 +32,5 @@ export const antMath = {
       new Vector2(center.x, center.y),
       -angle
     )
-  },
-  move: (ant: Ant): Vec2 => {
-    const rad = (360 - ant.facing) * (Math.PI / 180)
-    const sin = Math.sin(rad)
-    const cos = Math.cos(rad)
-
-    const x = ant.position.x + ant.speed * sin
-    const y = ant.position.y + ant.speed * cos
-
-    const movement = { x, y }
-
-    return movement
   },
 }

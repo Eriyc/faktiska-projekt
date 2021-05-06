@@ -1,10 +1,12 @@
 import { chakra, useSafeLayoutEffect } from '@chakra-ui/react'
 import { CanvasContainer } from 'components/global/container'
 import { FC, MouseEventHandler, useEffect, useRef } from 'react'
-import { Brush } from 'utils'
+import { Brush } from './brush'
 import { useMousePosition } from './hooks'
 import { antStore } from './store'
 import { antMath } from './math'
+import { wallTools } from './obstacle'
+import { Vector2 } from 'three'
 
 const AntsCanvas: FC = () => {
   const canvas = useRef<HTMLCanvasElement>(null)
@@ -15,11 +17,9 @@ const AntsCanvas: FC = () => {
   const store = antStore()
 
   const handleClick: MouseEventHandler = () => {
-    console.time('click-time')
     store.ants.forEach((ant) => {
       if (antMath.pointInAnt(ant, mouse.current)) {
-        console.timeEnd('click-time')
-        alert(`${ant.id}\n${ant.facing}`)
+        ant.toggle()
       }
     })
   }
@@ -30,7 +30,7 @@ const AntsCanvas: FC = () => {
         const dimensions = el.getBoundingClientRect()
         width.current = dimensions.width
         el.width = dimensions.width
-        el.height = dimensions.height
+        el.height = 500
       }
     }
     getDimensions(canvas.current)
@@ -54,17 +54,29 @@ const AntsCanvas: FC = () => {
       ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
       ctx.setTransform(1, 0, 0, 1, 0, 0)
 
+      store.setWalls(
+        wallTools
+          .createBoundryWalls(
+            { x: 0, y: 0 },
+            { x: canvasEl.width, y: canvasEl.height }
+          )
+          .map((wall) => {
+            wall.draw(ctx)
+            return wall
+          })
+      )
+
       store.setAnts(
         store.ants.map((ant) => {
-          //ant.facing = (ant.facing + Math.random()) % 360
-          ant.position = antMath.move(ant)
-          let active = false
-          if (antMath.pointInAnt(ant, mouse.current)) {
-            active = true
-          }
-          if (brush.current) {
-            brush.current.drawAnt(ant, active)
-          }
+          // check conditions
+          ant.rays.forEach((ray) => ray.draw(ctx))
+
+          ant.move(store.walls)
+
+          // move the ant
+          ant.selected = antMath.pointInAnt(ant, mouse.current)
+          ant.facing = (ant.facing + 0.1) % 360
+          ant.show(ctx)
           return ant
         })
       )
@@ -81,7 +93,8 @@ const AntsCanvas: FC = () => {
           Your browser does not support canvas
         </chakra.span>
       </CanvasContainer>
-      <p>{JSON.stringify(mouse)}</p>
+      <p>{mouse.current.x}</p>
+      {JSON.stringify(store.ants[0].rays[0].hit)}
     </chakra.section>
   )
 }
